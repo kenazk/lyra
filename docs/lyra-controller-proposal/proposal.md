@@ -23,7 +23,7 @@ There are two options I think that are viable here:
 ### Option 1: Centralized controller running on Kubernetes
 The first option is that we deploy a Lyra controller on the Kubernetes cluster with a command like `$ lyra init` . The controller would run on the cluster, register the Workflow CRD with the cluster, and start receiving Workflow requests from any client. It would then make the required calls to the resource providers and reconcile state.
 
-<p align="center"><img src="docs/lyra-controller-proposal/kubernetes-based-controller.jpg" alt="kubernetes"></p>
+<p align="center"><img src="https://github.com/kenazk/lyra/raw/proposal/docs/lyra-controller-proposal/kubernetes-based-controller.jpg" alt="kubernetes"></p>
 
 **Advantages of this approach:**
 * Supports multiple clients creating Workflow objects
@@ -42,7 +42,7 @@ The first option is that we deploy a Lyra controller on the Kubernetes cluster w
 ### Option 2: Daemonized controller running on workstation
 The second option is that the Lyra controller runs as a daemon on the workstation. In this approach, you could run a command like `$ lyra controller` which would register the Workflow CRD with the Kubernetes cluster and start listening to Workflow creation objects. To ensure that multiple users are not clobbering each other, we would need to implement [Issue #57](https://github.com/lyraproj/lyra/issues/57)  and also provide some mechanism for making sure another listening controller doesn’t try to implement the Workflow (e.g. enforce namespaces?).
 
-<p align="center"><img src="docs/lyra-controller-proposal/workstation-based-controller.jpg" alt="workstation"></p>
+<p align="center"><img src="https://github.com/kenazk/lyra/raw/proposal/docs/lyra-controller-proposal/workstation-based-controller.jpg" alt="workstation"></p>
 
 **Advantages of this approach:**
 * Still supports multiple clients creating Workflow objects
@@ -54,7 +54,7 @@ The second option is that the Lyra controller runs as a daemon on the workstatio
 **Disadvantages of this approach:**
 * Multiple controllers trying to implement the same workflow
 * Each workstation must ensure access to desired resources/resource providers
-* Consumers now need to know about how to interact with Lyra 
+* Consumers now need to know about how to interact with Lyra
 
 ## Key Considerations
 ### Team Scaling
